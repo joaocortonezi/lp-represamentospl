@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -48,6 +48,10 @@ export function LeadForm({
   const [ok, setOk] = useState(false);
   const [nome, setNome] = useState("");
   const [sending, setSending] = useState(false);
+  /* Anti-spam: honeypot que humano não vê + tempo desde a montagem do form.
+     O servidor descarta envios com honeypot preenchido ou rápidos demais. */
+  const hpRef = useRef<HTMLInputElement>(null);
+  const mountedAt = useRef(Date.now());
 
   const {
     register,
@@ -75,6 +79,8 @@ export function LeadForm({
           tel: data.tel,
           email: data.email,
           source,
+          hp: hpRef.current?.value ?? "",
+          t: Date.now() - mountedAt.current,
         }),
       });
     } catch {
@@ -127,6 +133,23 @@ export function LeadForm({
           <p className="sub">{sub}</p>
         </div>
       </div>
+
+      {/* Honeypot: fora da tela e fora da ordem de tab; só bot preenche. */}
+      <input
+        ref={hpRef}
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          left: "-9999px",
+          width: 1,
+          height: 1,
+          opacity: 0,
+        }}
+      />
 
       <div className="field">
         <label htmlFor={`lf-nome-${source}`}>Nome completo</label>
