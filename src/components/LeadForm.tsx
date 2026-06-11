@@ -290,6 +290,9 @@ export function LeadForm({
       setSending(false);
       setLead({ nome: data.nome, tel: data.tel, email: data.email });
       setStage("done");
+      /* abre a qualificação direto, sem exigir clique; fechar o modal
+         devolve ao card com o botão de reabrir e o atalho do WhatsApp */
+      setQualifyOpen(true);
     }
   }
 
