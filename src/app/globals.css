@@ -52,7 +52,7 @@
 }
 
 *{box-sizing:border-box}
-html{ -webkit-text-size-adjust:100%; }
+html{ -webkit-text-size-adjust:100%; overflow-x:clip; }
 body{
   margin:0;
   font-family:var(--sans);
@@ -123,12 +123,14 @@ button{font-family:inherit;cursor:pointer}
 .btn--ghost:hover{background:var(--blue-tint)}
 .btn--light{background:#fff;color:var(--navy-700);box-shadow:0 4px 14px rgba(7,22,42,.24)}
 .btn--light:hover{background:#EEF3F9}
-.btn--block{width:100%}
+.btn--block{width:100%;white-space:normal;text-align:center;line-height:1.25}
 .btn--lg{padding:17px 26px;font-size:16px}
 
 /* CTA de seção (abre o modal Lista VIP) */
 .seccta{display:flex;justify-content:center;margin-top:32px}
 .seccta--start{justify-content:flex-start}
+/* labels longos quebram linha em telas estreitas em vez de estourar a página */
+.seccta .btn{max-width:100%;white-space:normal;text-align:center;line-height:1.25}
 
 /* ---------- pills / badges ---------- */
 .pill{
@@ -188,9 +190,10 @@ button{font-family:inherit;cursor:pointer}
 .hero__scrim{position:absolute;inset:0;z-index:1;background:
   linear-gradient(180deg, rgba(7,20,38,.62) 0%, rgba(7,20,38,.30) 30%, rgba(7,20,38,.46) 70%, rgba(7,20,38,.78) 100%),
   linear-gradient(100deg, rgba(7,20,38,.86) 0%, rgba(7,20,38,.50) 42%, rgba(7,20,38,.12) 70%);}
-.hero__grid{position:relative;z-index:2;display:grid;gap:26px;padding:30px 0 40px}
+/* padding só vertical para não sobrescrever o lateral do .wrap */
+.hero__grid{position:relative;z-index:2;display:grid;gap:26px;padding-top:30px;padding-bottom:40px}
 @media(min-width:980px){
-  .hero__grid{grid-template-columns:1.02fr .98fr;gap:46px;align-items:center;padding:64px 0 78px;min-height:600px}
+  .hero__grid{grid-template-columns:1.02fr .98fr;gap:46px;align-items:center;padding-top:64px;padding-bottom:78px;min-height:600px}
 }
 .hero__meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .hero h1{
@@ -200,7 +203,7 @@ button{font-family:inherit;cursor:pointer}
   text-shadow:0 2px 24px rgba(5,16,30,.4);
 }
 .hero h1 em{font-style:normal;color:var(--brass-bright)}
-.hero__loc{display:flex;align-items:center;gap:8px;margin-top:14px;font-weight:600;color:#CFDBE8;font-size:15px;white-space:nowrap}
+.hero__loc{display:flex;align-items:center;gap:8px;margin-top:14px;font-weight:600;color:#CFDBE8;font-size:15px}
 .hero__loc svg{width:17px;height:17px;color:var(--brass-bright)}
 .hero .lead{color:#D7E1EC;text-shadow:0 1px 12px rgba(5,16,30,.35)}
 
