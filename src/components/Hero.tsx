@@ -34,10 +34,10 @@ export function Hero() {
           </Reveal>
           <Reveal index={3}>
             <p className="lead">
-              Duas torres residenciais e cerca de 112 unidades dentro do
+              Três torres residenciais ao lado do
               Aquarela das Artes, a região que mais cresce em Sinop. Entre na
               Lista VIP, garanta <b>prioridade de escolha</b> e a{" "}
-              <b>tabela com desconto de pré-lançamento</b>. E seja o primeiro a
+              <b>tabela com condições de pré-lançamento</b>. E seja o primeiro a
               conhecer plantas e tipologias, antes do mercado.
             </p>
           </Reveal>
