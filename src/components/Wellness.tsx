@@ -7,6 +7,7 @@ import {
   Waves,
   Dumbbell,
   Droplets,
+  Leaf,
   LucideIcon,
 } from "lucide-react";
 import { Reveal } from "./Reveal";
@@ -37,6 +38,11 @@ const ITENS: { Icon: LucideIcon; t: string; d: string }[] = [
     Icon: Droplets,
     t: "Piscina com raia de 25m climatizada",
     d: "Para treinar e nadar com conforto em qualquer estação.",
+  },
+  {
+    Icon: Leaf,
+    t: "Praça de bem-estar",
+    d: "Área ao ar livre para meditar, respirar e desacelerar a rotina.",
   },
 ];
 

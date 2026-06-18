@@ -305,8 +305,8 @@ button{font-family:inherit;cursor:pointer}
 /* ============================================================
    ÁREAS COMUNS · bento
    ============================================================ */
-.bento{display:grid;gap:12px;margin-top:26px;grid-template-columns:repeat(2,1fr);grid-auto-rows:128px}
-@media(min-width:760px){.bento{grid-template-columns:repeat(4,1fr);grid-auto-rows:168px}}
+.bento{display:grid;gap:14px;margin-top:26px;grid-template-columns:repeat(2,1fr);grid-auto-rows:172px}
+@media(min-width:760px){.bento{grid-template-columns:repeat(4,1fr);grid-auto-rows:224px}}
 .amen{
   position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);
   background:var(--card);box-shadow:var(--shadow-sm);
