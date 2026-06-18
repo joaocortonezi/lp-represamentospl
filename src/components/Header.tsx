@@ -9,9 +9,9 @@ export function Header({ onOpen }: { onOpen: () => void }) {
   return (
     <header className="hdr">
       <div className="wrap hdr__in">
-        <a className="brand" href="#topo" aria-label="Etna by SPL · por Tozi Imóveis">
+        <a className="brand" href="#topo" aria-label="Etna by SPL · Vendido por Tozi Imóveis">
           <EtnaLogo size={26} />
-          <span className="brand__sub">por Tozi Imóveis · Sinop · MT</span>
+          <span className="brand__sub">Vendido por Tozi Imóveis · Sinop · MT</span>
         </a>
         <div className="hdr__cta">
           <span className="pill pill--live">
