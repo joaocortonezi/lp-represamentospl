@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { waLink } from "@/lib/wa";
 import { track, newEventId, getCookie } from "@/lib/pixel";
+import { gtagLead } from "@/lib/gtag";
 import { WhatsAppIcon } from "./icons/WhatsAppIcon";
 
 export function maskPhone(v: string): string {
@@ -308,6 +309,8 @@ export function LeadForm({
         },
         eventId
       );
+      /* conversão de Lead no Google Ads (e generate_lead no GA4, se houver) */
+      gtagLead();
       setStage("done");
       /* abre a qualificação direto, sem exigir clique; fechar o modal
          devolve ao card com o botão de reabrir e o atalho do WhatsApp */

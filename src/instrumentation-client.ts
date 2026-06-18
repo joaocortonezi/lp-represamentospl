@@ -1,5 +1,6 @@
 import { initBotId } from "botid/client/core";
 import { initPixel, track } from "./lib/pixel";
+import { initGtag } from "./lib/gtag";
 
 /* BotID (anti-bot da Vercel): anexa headers de classificação às requisições
    destas rotas. O route handler valida com checkBotId(). Em dev local o
@@ -17,6 +18,7 @@ initBotId({
    Envolto em try/catch — rastreamento nunca pode derrubar a página. */
 try {
   initPixel();
+  initGtag();
   document.addEventListener(
     "click",
     (e) => {
