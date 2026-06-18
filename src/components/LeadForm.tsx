@@ -15,7 +15,7 @@ import {
   X,
 } from "lucide-react";
 import { waLink } from "@/lib/wa";
-import { track } from "@/lib/pixel";
+import { track, newEventId, getCookie } from "@/lib/pixel";
 import { WhatsAppIcon } from "./icons/WhatsAppIcon";
 
 export function maskPhone(v: string): string {
@@ -270,9 +270,12 @@ export function LeadForm({
 
   async function onSubmit(data: FormData) {
     setSending(true);
+    /* Mesmo ID para o Pixel (browser) e a CAPI (server) → Meta deduplica. */
+    const eventId = newEventId();
     try {
       /* Lead vai pro Vista CRM com a origem da conversão. Se o CRM falhar,
-         não bloqueia a pessoa: o WhatsApp continua sendo o canal principal. */
+         não bloqueia a pessoa: o WhatsApp continua sendo o canal principal.
+         eventId/fbp/fbc/url seguem juntos para o servidor disparar a CAPI. */
       await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -283,6 +286,10 @@ export function LeadForm({
           source,
           hp: hpRef.current?.value ?? "",
           t: Date.now() - mountedAt.current,
+          eventId,
+          fbp: getCookie("_fbp"),
+          fbc: getCookie("_fbc"),
+          eventSourceUrl: typeof window !== "undefined" ? window.location.href : "",
         }),
       });
     } catch {
@@ -290,8 +297,17 @@ export function LeadForm({
     } finally {
       setSending(false);
       setLead({ nome: data.nome, tel: data.tel, email: data.email });
-      /* conversão principal da campanha (otimizar por Lead no Meta) */
-      track("Lead", { content_name: "Lista VIP — Etna by SPL", lead_source: source });
+      /* conversão principal da campanha (otimizar por Lead no Meta).
+         lp_origem separa as conversões por LP mesmo usando o mesmo pixel. */
+      track(
+        "Lead",
+        {
+          content_name: "Lista VIP — Etna by SPL",
+          lead_source: source,
+          lp_origem: typeof window !== "undefined" ? window.location.hostname : "",
+        },
+        eventId
+      );
       setStage("done");
       /* abre a qualificação direto, sem exigir clique; fechar o modal
          devolve ao card com o botão de reabrir e o atalho do WhatsApp */

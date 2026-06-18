@@ -42,7 +42,30 @@ export function initPixel(): void {
   window.fbq("track", "PageView");
 }
 
-export function track(event: string, params?: Record<string, unknown>): void {
+export function track(
+  event: string,
+  params?: Record<string, unknown>,
+  eventID?: string
+): void {
   if (typeof window === "undefined" || !window.fbq) return;
-  window.fbq("track", event, params);
+  if (eventID) window.fbq("track", event, params, { eventID });
+  else window.fbq("track", event, params);
+}
+
+/* ID único do evento, compartilhado entre o Pixel (browser) e a CAPI (server)
+   para o Meta deduplicar a mesma conversão contada nos dois caminhos. */
+export function newEventId(): string {
+  try {
+    if (typeof crypto !== "undefined" && crypto.randomUUID) return crypto.randomUUID();
+  } catch {
+    /* fallback abaixo */
+  }
+  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
+/* Lê um cookie no browser (usado para _fbp e _fbc, que melhoram o match da CAPI). */
+export function getCookie(name: string): string {
+  if (typeof document === "undefined") return "";
+  const m = document.cookie.match(new RegExp("(?:^|; )" + name + "=([^;]*)"));
+  return m ? decodeURIComponent(m[1]) : "";
 }

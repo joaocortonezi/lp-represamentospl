@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { checkBotId } from "botid/server";
+import { createHash } from "crypto";
 import * as z from "zod";
 
 const cadastroSchema = z.object({
@@ -12,6 +13,11 @@ const cadastroSchema = z.object({
   hp: z.string().optional().default(""),
   /* Milissegundos entre montar o form e enviar; bot envia em <3s. */
   t: z.number().optional(),
+  /* Meta CAPI (dedupe com o Pixel): id do evento, cookies e url de origem. */
+  eventId: z.string().optional(),
+  fbp: z.string().optional(),
+  fbc: z.string().optional(),
+  eventSourceUrl: z.string().optional(),
 });
 
 /* Segunda etapa: qualificação opcional pós-cadastro. O Vista deduplica o
@@ -95,6 +101,79 @@ async function enviarLeadAoVista(lead: Record<string, string>) {
   }
 }
 
+/* ---------- Meta Conversions API (server-side) ----------
+   Envia o evento Lead pelo servidor, com o mesmo event_id do Pixel (browser)
+   para o Meta deduplicar. Só roda se FB_PIXEL_ID + FB_CONVERSIONS_TOKEN
+   estiverem no ambiente; sem isso, é no-op. Falha de CAPI nunca quebra o lead. */
+const sha256 = (v: string) => createHash("sha256").update(v).digest("hex");
+
+function normFone(tel: string): string {
+  let d = tel.replace(/\D/g, "");
+  if (!d.startsWith("55")) d = "55" + d;
+  return d;
+}
+
+async function enviarCapiMeta(p: {
+  nome: string;
+  tel: string;
+  email?: string;
+  eventId?: string;
+  fbp?: string;
+  fbc?: string;
+  eventSourceUrl?: string;
+  clientIp?: string;
+  userAgent?: string;
+  lpOrigem?: string;
+}): Promise<void> {
+  const PIXEL = process.env.FB_PIXEL_ID || process.env.NEXT_PUBLIC_FB_PIXEL_ID;
+  const TOKEN = process.env.FB_CONVERSIONS_TOKEN;
+  if (!PIXEL || !TOKEN) return;
+
+  try {
+    const user_data: Record<string, unknown> = { ph: [sha256(normFone(p.tel))] };
+    if (p.email) user_data.em = [sha256(p.email.trim().toLowerCase())];
+    if (p.nome) {
+      const parts = p.nome.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      if (parts[0]) user_data.fn = [sha256(parts[0])];
+      if (parts.length > 1) user_data.ln = [sha256(parts[parts.length - 1])];
+    }
+    if (p.fbp) user_data.fbp = p.fbp;
+    if (p.fbc) user_data.fbc = p.fbc;
+    if (p.clientIp && p.clientIp !== "unknown") user_data.client_ip_address = p.clientIp;
+    if (p.userAgent) user_data.client_user_agent = p.userAgent;
+
+    const payload = {
+      data: [
+        {
+          event_name: "Lead",
+          event_time: Math.floor(Date.now() / 1000),
+          event_id: p.eventId,
+          action_source: "website",
+          event_source_url: p.eventSourceUrl,
+          user_data,
+          custom_data: {
+            content_name: "Lista VIP — Etna by SPL",
+            lp_origem: p.lpOrigem,
+          },
+        },
+      ],
+    };
+
+    const res = await fetch(
+      `https://graph.facebook.com/v21.0/${PIXEL}/events?access_token=${encodeURIComponent(TOKEN)}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        signal: AbortSignal.timeout(8_000),
+      }
+    );
+    if (!res.ok) console.error("[lead] CAPI Meta recusou:", res.status, (await res.text()).slice(0, 200));
+  } catch (err) {
+    console.error("[lead] CAPI Meta falhou:", err);
+  }
+}
+
 export async function POST(req: NextRequest) {
   let body: unknown;
   try {
@@ -144,7 +223,7 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  const { nome, tel, email, source, hp, t } = parsed.data;
+  const { nome, tel, email, source, hp, t, eventId, fbp, fbc, eventSourceUrl } = parsed.data;
 
   /* Honeypot preenchido ou envio rápido demais para um humano: responde
      sucesso falso para não ensinar o bot a contornar. Lead não é gravado. */
@@ -158,6 +237,25 @@ export async function POST(req: NextRequest) {
     console.warn("[lead] descartado pelo BotID", { ip });
     return NextResponse.json({ ok: false, error: "access_denied" }, { status: 403 });
   }
+
+  let lpOrigem: string | undefined;
+  try {
+    if (eventSourceUrl) lpOrigem = new URL(eventSourceUrl).hostname;
+  } catch {
+    /* url inválida: segue sem lp_origem */
+  }
+  await enviarCapiMeta({
+    nome,
+    tel,
+    email,
+    eventId,
+    fbp,
+    fbc,
+    eventSourceUrl,
+    clientIp: ip,
+    userAgent: req.headers.get("user-agent") ?? undefined,
+    lpOrigem,
+  });
 
   return enviarLeadAoVista({
     nome,
