@@ -26,8 +26,12 @@ export function initGtag(): void {
   document.head.appendChild(s);
 
   window.dataLayer = window.dataLayer || [];
-  const gtag: GtagFn = function (...args: unknown[]) {
-    window.dataLayer!.push(args);
+  /* IMPORTANTE: o gtag precisa empurrar o objeto `arguments` (não um array),
+     senão o Google não reconhece os comandos js/config/event e os hits ficam
+     "adiados" (deferred hits). */
+  const gtag: GtagFn = function () {
+    // eslint-disable-next-line prefer-rest-params
+    window.dataLayer!.push(arguments);
   };
   window.gtag = gtag;
   gtag("js", new Date());
