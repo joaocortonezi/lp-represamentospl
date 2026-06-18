@@ -7,7 +7,7 @@ const cadastroSchema = z.object({
   nome: z.string().trim().min(2),
   tel: z.string().refine((v) => v.replace(/\D/g, "").length >= 10),
   email: z.string().trim().optional().default(""),
-  source: z.string().trim().max(120).optional().default("LP Represamento"),
+  source: z.string().trim().max(120).optional().default("LP Etna"),
   /* Honeypot: campo invisível no form; humano nunca preenche. */
   hp: z.string().optional().default(""),
   /* Milissegundos entre montar o form e enviar; bot envia em <3s. */
@@ -22,7 +22,7 @@ const qualificacaoSchema = z.object({
   nome: z.string().trim().min(2),
   tel: z.string().refine((v) => v.replace(/\D/g, "").length >= 10),
   email: z.string().trim().optional().default(""),
-  source: z.string().trim().max(120).optional().default("LP Represamento"),
+  source: z.string().trim().max(120).optional().default("LP Etna"),
   finalidade: z.enum(["Investimento", "Moradia"]),
   primeiroImovel: z.enum(["Sim", "Não"]),
   jaInvestiu: z.enum(["Sim", "Não"]),
@@ -127,7 +127,7 @@ export async function POST(req: NextRequest) {
     }
 
     const partes = [
-      `Qualificacao do lead (LP represamento SPL):`,
+      `Qualificacao do lead (LP Etna by SPL):`,
       `Finalidade: ${finalidade}.`,
       `Primeiro imovel: ${primeiroImovel}.`,
       `Ja investiu no mercado imobiliario: ${jaInvestiu}.`,
@@ -165,6 +165,6 @@ export async function POST(req: NextRequest) {
     ...(email ? { email } : {}),
     veiculo: source,
     Interesse: "Venda",
-    mensagem: `Lead veio da LP com interesse no represamento SPL. Converteu em: ${source}.`,
+    mensagem: `Lead veio da LP com interesse no Etna by SPL. Converteu em: ${source}.`,
   });
 }

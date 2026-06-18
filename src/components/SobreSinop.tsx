@@ -20,13 +20,14 @@ export function SobreSinop() {
                 hoje o principal polo urbano do norte de MT, referência em
                 comércio, saúde e educação para dezenas de municípios ao redor.
                 Movida pelo agronegócio, é uma das cidades que mais crescem no
-                Centro-Oeste. Aqui, comprar antes de virar público já é
-                estratégia conhecida.
+                Centro-Oeste. Esse crescimento sustenta a demanda imobiliária e
+                é justamente o cenário do Etna by SPL. Aqui, entrar antes do
+                lançamento público já é estratégia conhecida.
               </p>
             </Reveal>
             <SectionCta
               label="Quero investir em Sinop"
-              source="LP Represamento - Secção Por que Sinop"
+              source="LP Etna - Secção Por que Sinop"
               align="start"
             />
           </div>

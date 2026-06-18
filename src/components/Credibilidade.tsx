@@ -15,18 +15,19 @@ export function Credibilidade() {
     <section className="cred section" id="tozi">
       <div className="wrap cred__in">
         <Reveal>
-          <span className="eyebrow eyebrow--light">A imobiliária</span>
+          <span className="eyebrow">A imobiliária</span>
           <h2 className="h-sec">23 anos vendendo o melhor de Sinop</h2>
           <p className="lead">
             A Tozi Imóveis é uma imobiliária de Sinop. Há 23 anos conecta quem
             compra e quem investe aos melhores lançamentos da região, com
             assessoria especializada e atendimento consultivo do primeiro
-            contato à entrega das chaves.
+            contato à entrega das chaves. No Etna by SPL, a Tozi é parceira
+            oficial de vendas da SPL, construtora com 44 anos de história e mais
+            de 9.500 unidades entregues.
           </p>
           <SectionCta
             label="Falar com um consultor da Tozi"
-            source="LP Represamento - Secção Sobre a Tozi"
-            light
+            source="LP Etna - Secção Sobre a Tozi"
             align="start"
           />
         </Reveal>

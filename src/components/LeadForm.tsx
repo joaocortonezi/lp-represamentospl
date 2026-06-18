@@ -15,6 +15,7 @@ import {
   X,
 } from "lucide-react";
 import { waLink } from "@/lib/wa";
+import { track } from "@/lib/pixel";
 import { WhatsAppIcon } from "./icons/WhatsAppIcon";
 
 export function maskPhone(v: string): string {
@@ -242,7 +243,7 @@ export function LeadForm({
   sub = "Receba antes de ser aberto ao público todas as informações!",
   cta = "Quero entrar na Lista VIP",
   variant = "",
-  source = "LP Represamento",
+  source = "LP Etna",
 }: LeadFormProps) {
   /* form → done (cadastrado) → qualified (segunda etapa enviada) */
   const [stage, setStage] = useState<"form" | "done" | "qualified">("form");
@@ -289,6 +290,8 @@ export function LeadForm({
     } finally {
       setSending(false);
       setLead({ nome: data.nome, tel: data.tel, email: data.email });
+      /* conversão principal da campanha (otimizar por Lead no Meta) */
+      track("Lead", { content_name: "Lista VIP — Etna by SPL", lead_source: source });
       setStage("done");
       /* abre a qualificação direto, sem exigir clique; fechar o modal
          devolve ao card com o botão de reabrir e o atalho do WhatsApp */
@@ -302,9 +305,9 @@ export function LeadForm({
         className="btn btn--wa btn--block"
         style={{ marginTop: 14 }}
         href={waLink(
-          "Acabei de entrar na Lista VIP do novo lançamento no Aquarela das Artes (" +
+          "Acabei de entrar na Lista VIP do Etna by SPL, no Aquarela das Artes (" +
             lead.nome +
-            "). Quero a tabela com desconto."
+            "). Quero o acesso antecipado a plantas e condições."
         )}
         target="_blank"
         rel="noopener"

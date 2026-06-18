@@ -60,7 +60,7 @@ export function Depoimentos() {
         </div>
         <SectionCta
           label="Comprar com quem entende de Sinop"
-          source="LP Represamento - Secção Depoimentos"
+          source="LP Etna - Secção Depoimentos"
         />
       </div>
     </section>

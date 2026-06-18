@@ -7,9 +7,9 @@ import { SectionCta } from "./SectionCta";
 function ValorizationChart() {
   const bars = [
     { l: "CDI", y: "12 meses", v: 11, top: "+11%", c: "#9A968B" },
-    { l: "Gaia by SPL", y: "desde 2025 (est.)", v: 16, top: "+16%", c: "#1C5E45" },
-    { l: "Lançamentos Sinop", y: "média ao ano", v: 22, top: "15 a 28%", c: "#2F5E92" },
-    { l: "Ciclo na planta", y: "36 meses · entrega", v: 45, top: "até 45%", c: "#1C5E45" },
+    { l: "Gaia by SPL", y: "desde 2025 (est.)", v: 16, top: "+16%", c: "#5C6B4C" },
+    { l: "Lançamentos Sinop", y: "média ao ano", v: 22, top: "15 a 28%", c: "#5C6B4C" },
+    { l: "Ciclo na planta", y: "36 meses · entrega", v: 45, top: "até 45%", c: "#BF9357" },
   ];
   const W = 460,
     H = 270,
@@ -70,7 +70,7 @@ function ValorizationChart() {
               fontFamily="var(--sans)"
               fontSize="9.5"
               fontWeight="700"
-              fill="#163763"
+              fill="#26352B"
             >
               {b.l}
             </text>
@@ -103,9 +103,11 @@ export function Valorizacao() {
               <h2 className="h-sec">O argumento racional do investidor</h2>
               <p className="lead">
                 Em Sinop, comprar no lançamento e revender ou alugar na entrega
-                virou estratégia. O ciclo completo na planta tem gerado até 45%
-                de valorização acumulada em 36 meses, com lançamentos subindo de
-                15% a 28% ao ano.
+                virou estratégia. Historicamente, o ciclo completo na planta
+                gerou até 45% de valorização acumulada em 36 meses, com
+                lançamentos que subiram de 15% a 28% ao ano. Desempenho passado
+                não é garantia, mas mostra o cenário que o Etna by SPL inicia
+                agora.
               </p>
             </Reveal>
             <div className="val__big">
@@ -116,22 +118,22 @@ export function Valorizacao() {
                 <li>
                   <span className="n">1</span>
                   <div>
-                    <b>Compre abaixo da tabela pública</b>
+                    <b>Entre no pré-lançamento do Etna</b>
                     <p>
-                      A Lista VIP entra com desconto de pré-lançamento. Você já
-                      começa com margem em relação a quem compra no lançamento
-                      público de setembro.
+                      A Lista VIP tem acesso antecipado e prioridade de escolha,
+                      antes da abertura pública. Você entra no início do ciclo,
+                      junto com quem chega primeiro.
                     </p>
                   </div>
                 </li>
                 <li>
                   <span className="n">2</span>
                   <div>
-                    <b>O Gaia by SPL já percorre esse ciclo</b>
+                    <b>O Gaia by SPL já percorreu esse ciclo</b>
                     <p>
-                      Lançado em 2025 pela SPL, o Gaia abriu o pré-lançamento
-                      com entrada a partir de 5% e quem entrou comprou no menor
-                      preço da curva. Este novo lançamento começa o mesmo ciclo
+                      Lançado em 2025 pela SPL, o Gaia abriu o pré-lançamento e
+                      quem entrou no início comprou no menor preço da curva. O
+                      Etna by SPL, da mesma construtora, começa o mesmo ciclo
                       agora.
                     </p>
                   </div>
@@ -141,8 +143,9 @@ export function Valorizacao() {
                   <div>
                     <b>Saída por venda ou locação</b>
                     <p>
-                      Região com demanda de aluguel firme: universidades,
-                      hospital e agronegócio sustentam a procura.
+                      Região com demanda de aluguel firme. Universidades como
+                      Unemat e Fasipe, a orla do Aquarela e o agronegócio
+                      sustentam a procura.
                     </p>
                   </div>
                 </li>
@@ -150,7 +153,7 @@ export function Valorizacao() {
             </Reveal>
             <SectionCta
               label="Entrar no início do ciclo"
-              source="LP Represamento - Secção Valorização"
+              source="LP Etna - Secção Valorização"
               align="start"
             />
           </div>

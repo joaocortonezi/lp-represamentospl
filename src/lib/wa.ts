@@ -6,7 +6,7 @@ export function waLink(msg?: string): string {
     WA_NUMBER +
     "?text=" +
     encodeURIComponent(
-      msg || "Vi sobre o novo lançamento no Aquarela das Artes e quero saber mais!"
+      msg || "Vi sobre o Etna by SPL, no Aquarela das Artes, e quero saber mais!"
     )
   );
 }

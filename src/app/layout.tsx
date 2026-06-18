@@ -16,9 +16,9 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: "Novo lançamento no Aquarela das Artes | Lista VIP · Tozi Imóveis",
+  title: "Etna by SPL · Lista VIP | Tozi Imóveis · Sinop MT",
   description:
-    "Duas torres residenciais no meio do Aquarela das Artes, vetor norte de Sinop · MT. Entre na Lista VIP e garanta prioridade de escolha e a tabela de pré-lançamento.",
+    "Etna by SPL, o empreendimento wellness no Aquarela das Artes, em Sinop · MT. Três torres, 384 unidades e mais de 3 mil m² de lazer. Entre na Lista VIP e garanta prioridade na escolha da unidade e acesso antecipado a plantas e condições.",
 };
 
 export default function RootLayout({

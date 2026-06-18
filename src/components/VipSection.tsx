@@ -20,39 +20,39 @@ const BENEFITS: {
 }[] = [
   {
     Icon: Crown,
-    t: "Prioridade de escolha",
-    d: "A lista escolhe unidade, andar e posição de sol antes de qualquer comprador do mercado geral.",
+    t: "Prioridade na escolha",
+    d: "A lista escolhe unidade, torre, andar e posição antes da abertura ao mercado geral.",
     tag: "1º na fila",
   },
   {
-    Icon: Percent,
-    t: "Tabela com desconto",
-    d: "Preço de pré-lançamento reservado à lista, abaixo da tabela pública que entra em set/2026.",
-    tag: "Abaixo do público",
-  },
-  {
     Icon: Layers,
-    t: "Plantas e tipologias em 1ª mão",
-    d: "As plantas e tipologias serão reveladas primeiro para a lista, antes de chegarem ao mercado.",
+    t: "Acesso antecipado",
+    d: "Plantas, tabela e condições do Etna by SPL chegam primeiro para a Lista VIP, antes do mercado.",
     tag: "Antes do mercado",
   },
   {
+    Icon: Percent,
+    t: "Plantas e condições em 1ª mão",
+    d: "Você conhece tipologias de 1 a 3 suítes, gardens e as condições oficiais com exclusividade.",
+    tag: "Primeira mão",
+  },
+  {
     Icon: Handshake,
-    t: "Consultor sênior dedicado",
+    t: "Consultor dedicado",
     d: "Atendimento consultivo e direto com um especialista da Tozi, sem fila e sem call center.",
     tag: "Atendimento direto",
   },
   {
     Icon: Building2,
-    t: "Sem juros na obra",
-    d: "Parcelas durante a obra sem juros: apenas a correção do INCC, como manda o setor.",
-    tag: "Só correção INCC",
+    t: "Convite ao coquetel",
+    d: "Vaga no coquetel de investidores da SPL em 02/07, com apresentação completa do empreendimento.",
+    tag: "Coquetel 02/07",
   },
   {
     Icon: Wallet,
-    t: "Reserva por valor baixo",
-    d: "Garanta sua unidade com um valor de reserva baixo e totalmente reembolsável se desistir.",
-    tag: "Reembolsável",
+    t: "Gratuito e sem compromisso",
+    d: "Entrar na lista não custa nada e não obriga a comprar. Você decide só depois de conhecer tudo.",
+    tag: "Sem compromisso",
   },
 ];
 
@@ -61,12 +61,13 @@ export function VipSection() {
     <section className="vip section" id="vip">
       <div className="wrap vip__in">
         <Reveal className="vip__head">
-          <span className="eyebrow eyebrow--light">O represamento</span>
+          <span className="eyebrow eyebrow--light">O pré-lançamento</span>
           <h2 className="h-sec">O que a Lista VIP garante a você</h2>
           <p className="lead">
-            Antes do lançamento oficial, a Tozi abre um grupo prioritário. Quem
-            entra agora compra primeiro, mais barato e com as melhores unidades
-            ainda disponíveis. É vantagem concreta, não promessa.
+            Antes do lançamento oficial, a Tozi abre um grupo prioritário do
+            Etna by SPL. Quem entra agora tem acesso antecipado, escolhe
+            primeiro e acompanha tudo de perto. É vantagem concreta, não
+            promessa.
           </p>
         </Reveal>
         <div className="vip__grid">
@@ -83,7 +84,7 @@ export function VipSection() {
         </div>
         <SectionCta
           label="Garantir minha prioridade"
-          source="LP Represamento - Secção Lista VIP"
+          source="LP Etna - Secção Lista VIP"
           light
         />
       </div>

@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { waLink } from "@/lib/wa";
 import { WhatsAppIcon } from "./icons/WhatsAppIcon";
 import { InstagramIcon, FacebookIcon } from "./icons/SocialIcons";
+import { EtnaLogo } from "./EtnaLogo";
 
 export function Footer() {
   return (
@@ -11,17 +11,11 @@ export function Footer() {
       <div className="wrap">
         <div className="ftr__grid">
           <div className="ftr__brand">
-            <Image
-              className="ftr__logo"
-              src="/assets/tozi-logo-branco.png"
-              alt="Tozi Imóveis"
-              width={134}
-              height={38}
-            />
+            <EtnaLogo size={30} />
             <p>
               Imobiliária de Sinop · MT há 23 anos. Assessoria especializada e
               atendimento consultivo na compra do seu imóvel. Estruturamos a
-              Lista VIP do novo lançamento no Aquarela das Artes.
+              Lista VIP do Etna by SPL, no Aquarela das Artes.
             </p>
             <div className="ftr__social">
               <a href={waLink()} target="_blank" rel="noopener" aria-label="WhatsApp">
@@ -64,7 +58,7 @@ export function Footer() {
                   WhatsApp · (66) 3531-7222
                 </a>
               </li>
-              <li>Sinop · Mato Grosso</li>
+              <li>Rua Joaquim Manuel de Macedo, 65 · Sinop/MT</li>
               <li>CRECI/MT J-8583</li>
             </ul>
           </div>

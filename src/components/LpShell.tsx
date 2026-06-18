@@ -8,13 +8,16 @@ import { LeadForm } from "./LeadForm";
 import { VipModalContext } from "./VipModalContext";
 import { Header } from "./Header";
 import { Hero } from "./Hero";
+import { Conceito } from "./Conceito";
 import { AreasComuns } from "./AreasComuns";
+import { Wellness } from "./Wellness";
 import { VipSection } from "./VipSection";
 import { SobreSinop } from "./SobreSinop";
 import { Localizacao } from "./Localizacao";
 import { Valorizacao } from "./Valorizacao";
 import { Credibilidade } from "./Credibilidade";
 import { Condicoes } from "./Condicoes";
+import { Tipologias } from "./Tipologias";
 import { Cronograma } from "./Cronograma";
 import { Depoimentos } from "./Depoimentos";
 import { Faq } from "./Faq";
@@ -54,7 +57,7 @@ function Modal({
         </button>
         <LeadForm
           heading="Entrar na Lista VIP"
-          sub="Nome e WhatsApp. Um consultor sênior envia a tabela de pré-lançamento com desconto."
+          sub="Nome e WhatsApp. Um consultor sênior envia o acesso antecipado a plantas e condições do Etna by SPL."
           cta="Quero minha prioridade"
           source={source}
         />
@@ -76,12 +79,12 @@ function StickyBar({ onOpen }: { onOpen: (source?: string) => void }) {
   return (
     <div className={"stickybar " + (show ? "show" : "")}>
       <div className="meta">
-        <b>Novo lançamento</b>
+        <b>Etna by SPL</b>
         <span>No Aquarela das Artes · Lista VIP</span>
       </div>
       <button
         className="btn btn--primary"
-        onClick={() => onOpen("LP Represamento - Barra Mobile")}
+        onClick={() => onOpen("LP Etna - Barra Mobile")}
       >
         <Crown strokeWidth={1.9} /> Lista VIP
       </button>
@@ -89,7 +92,7 @@ function StickyBar({ onOpen }: { onOpen: (source?: string) => void }) {
   );
 }
 
-const DEFAULT_SOURCE = "LP Represamento - Modal";
+const DEFAULT_SOURCE = "LP Etna - Modal";
 
 export function LpShell() {
   const [modal, setModal] = useState(false);
@@ -103,16 +106,19 @@ export function LpShell() {
 
   return (
     <VipModalContext.Provider value={open}>
-      <Header onOpen={() => open("LP Represamento - Header")} />
+      <Header onOpen={() => open("LP Etna - Header")} />
       <main>
         <Hero />
-        <AreasComuns />
-        <VipSection />
+        <Credibilidade />
+        <Conceito />
         <SobreSinop />
+        <AreasComuns />
+        <Wellness />
         <Localizacao />
         <Valorizacao />
-        <Credibilidade />
         <Condicoes />
+        <Tipologias />
+        <VipSection />
         <Cronograma />
         <Depoimentos />
         <Faq />

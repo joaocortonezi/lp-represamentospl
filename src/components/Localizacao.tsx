@@ -15,94 +15,100 @@ import { SectionCta } from "./SectionCta";
 
 const POIS: { Icon: LucideIcon; t: string; s: string; km: string }[] = [
   {
-    Icon: MapPin,
-    t: "Av. das Sibipirunas",
-    s: "Acesso principal do vetor norte",
-    km: "no entorno",
-  },
-  {
     Icon: Trees,
-    t: "Parque das Águas",
-    s: "Área verde e lazer ao ar livre",
-    km: "≈ 5 min",
-  },
-  {
-    Icon: Building2,
-    t: "Shopping Sinop",
-    s: "Compras, cinema e gastronomia",
-    km: "≈ 10 min",
-  },
-  {
-    Icon: ShieldCheck,
-    t: "Hospital Regional",
-    s: "Saúde de referência regional",
-    km: "≈ 10 min",
+    t: "Orla do Aquarela das Artes",
+    s: "Lazer, água e área verde na porta de casa",
+    km: "menos de 5 min",
   },
   {
     Icon: Award,
-    t: "UNEMAT · IFMT",
-    s: "Universidades e ensino técnico",
-    km: "≈ 10 min",
+    t: "Unemat · Fasipe",
+    s: "Universidades de referência na região",
+    km: "menos de 5 min",
+  },
+  {
+    Icon: Building2,
+    t: "Colégio Prina",
+    s: "Ensino de qualidade pertinho",
+    km: "menos de 5 min",
+  },
+  {
+    Icon: ShieldCheck,
+    t: "OAB · Fórum",
+    s: "Serviços e polo jurídico de Sinop",
+    km: "menos de 5 min",
+  },
+  {
+    Icon: MapPin,
+    t: "Av. Bruno Martini",
+    s: "Acesso rápido e bem conectado",
+    km: "no entorno",
   },
   {
     Icon: Car,
-    t: "Aeroporto regional",
-    s: "Conexões aéreas de Sinop",
-    km: "≈ 15 min",
+    t: "Aeroporto de Sinop",
+    s: "Conexões aéreas da região",
+    km: "menos de 5 min",
   },
 ];
 
 export function Localizacao() {
   return (
-    <section className="section sec--mist" id="local">
+    <section className="section sec--gold" id="local">
       <div className="wrap">
         <Reveal className="sechead">
           <span className="eyebrow">Localização</span>
-          <h2 className="h-sec">No meio do Aquarela das Artes</h2>
+          <h2 className="h-sec">No coração do Aquarela das Artes</h2>
           <p className="lead">
-            O empreendimento nasce dentro do Aquarela das Artes, com acesso
-            direto pela Av. das Sibipirunas e a poucos minutos do Shopping, do
-            Hospital Regional e das universidades. O endereço exato é revelado
-            só para a Lista VIP.
+            O Etna by SPL nasce na região do Aquarela das Artes, a 5 minutos de
+            tudo. Da orla às universidades, dos colégios ao aeroporto, você
+            chega rápido em tudo que importa no dia a dia.
+          </p>
+          <p className="loc__addr">
+            Rua Joaquim Manuel de Macedo, 65 · Aquarela das Artes · Sinop/MT
           </p>
         </Reveal>
-        <div className="loc">
-          <Reveal className="loc__map" index={1}>
-            <iframe
-              title="Mapa da região do novo lançamento em Sinop, MT"
-              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11000!2d-55.5400!3d-11.8320!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1780666522813!5m2!1spt-BR!2sbr"
-              loading="lazy"
-              allowFullScreen
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </Reveal>
-          <div>
-            <Reveal className="loc__pts" index={2}>
-              {POIS.map((p) => (
-                <div className="poi" key={p.t}>
-                  <div className="ic">
-                    <p.Icon strokeWidth={1.9} />
-                  </div>
-                  <div>
-                    <b>{p.t}</b>
-                    <span>{p.s}</span>
-                  </div>
-                  <span className="km">{p.km}</span>
-                </div>
-              ))}
-            </Reveal>
-            <Reveal className="loc__note" index={3}>
-              <Lock strokeWidth={1.9} /> Localização aproximada. Tempos de
-              deslocamento estimados de carro. O endereço exato é liberado só
-              para a Lista VIP. Inscreva-se para descobrir onde fica.
-            </Reveal>
-            <SectionCta
-              label="Descobrir o endereço primeiro"
-              source="LP Represamento - Secção Localização"
-              align="start"
+        <Reveal index={1}>
+          <figure
+            style={{
+              margin: "24px 0 20px",
+              borderRadius: "var(--r)",
+              overflow: "hidden",
+              boxShadow: "var(--shadow-lg)",
+              border: "1px solid var(--line)",
+            }}
+          >
+            <img
+              src="/assets/web/localizacao-aerea.jpg"
+              alt="Vista aérea de Sinop mostrando o Etna by SPL no Aquarela das Artes e os pontos de interesse a menos de 5 minutos"
+              style={{ width: "100%", display: "block" }}
             />
-          </div>
-        </div>
+          </figure>
+        </Reveal>
+        <Reveal className="loc__pts" index={2}>
+          {POIS.map((p) => (
+            <div className="poi" key={p.t}>
+              <div className="ic">
+                <p.Icon strokeWidth={1.9} />
+              </div>
+              <div>
+                <b>{p.t}</b>
+                <span>{p.s}</span>
+              </div>
+              <span className="km">{p.km}</span>
+            </div>
+          ))}
+        </Reveal>
+        <Reveal className="loc__note" index={3}>
+          <Lock strokeWidth={1.9} /> Tempos de deslocamento estimados de carro.
+          Condições e prioridade de escolha liberadas primeiro para a Lista VIP.
+          Inscreva-se para garantir as melhores condições.
+        </Reveal>
+        <SectionCta
+          label="Garantir prioridade na Lista VIP"
+          source="LP Etna - Secção Localização"
+          align="start"
+        />
       </div>
     </section>
   );

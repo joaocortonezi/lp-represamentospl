@@ -11,7 +11,7 @@ export function Hero() {
       <Image
         className="hero__bg"
         src="/assets/web/hero.jpg"
-        alt="Praça de entrada do novo lançamento"
+        alt="Praça de entrada do Etna by SPL"
         fill
         priority
         sizes="100vw"
@@ -26,25 +26,27 @@ export function Hero() {
           </Reveal>
           <Reveal index={1}>
             <h1>
-              Novo lançamento no meio do <em>Aquarela das Artes</em>
+              O melhor endereço de Sinop agora tem um{" "}
+              <em>estilo de vida</em>
             </h1>
           </Reveal>
           <Reveal index={2} className="hero__loc">
-            <MapPin strokeWidth={1.9} /> Vetor norte · Sinop · MT
+            <MapPin strokeWidth={1.9} /> No Aquarela das Artes · Sinop · MT
           </Reveal>
           <Reveal index={3}>
             <p className="lead">
-              Três torres residenciais ao lado do
-              Aquarela das Artes, a região que mais cresce em Sinop. Entre na
-              Lista VIP, garanta <b>prioridade de escolha</b> e a{" "}
-              <b>tabela com condições de pré-lançamento</b>. E seja o primeiro a
-              conhecer plantas e tipologias, antes do mercado.
+              Etna by SPL: três torres com 384 unidades e mais de 3 mil m² de
+              lazer wellness integrado, da raia climatizada de 25m aos rooftops e
+              ao espaço de sauna e crioterapia. Entre na Lista VIP, garanta{" "}
+              <b>prioridade na escolha da unidade</b> e{" "}
+              <b>acesso antecipado a plantas, tabela e condições</b>, antes do
+              mercado.
             </p>
           </Reveal>
         </div>
 
         <Reveal index={4}>
-          <LeadForm variant="formcard--hero" source="LP Represamento - Hero" />
+          <LeadForm variant="formcard--hero" source="LP Etna - Hero" />
         </Reveal>
       </div>
       <span className="hero__rendertag">Imagem ilustrativa · praça de entrada</span>

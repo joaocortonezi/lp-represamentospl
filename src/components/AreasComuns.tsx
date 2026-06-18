@@ -5,15 +5,15 @@ import { Reveal } from "./Reveal";
 import { SectionCta } from "./SectionCta";
 
 const AMENS = [
-  { id: "piscina", n: "Piscina", src: "/assets/web/piscina.jpg", cls: "amen--lg" },
-  { id: "bosque", n: "Bosque & Redário", src: "/assets/web/bosque.jpg", cls: "amen--w" },
-  { id: "academia", n: "Academia", src: "/assets/web/academia.jpg", cls: "" },
-  { id: "lounge", n: "Wine Bar", src: "/assets/web/winebar.jpg", cls: "" },
-  { id: "gourmet", n: "Espaço gourmet", src: "/assets/web/gourmet.jpg", cls: "" },
+  { id: "piscina", n: "Complexo aquático com raia de 25m", src: "/assets/web/piscina.jpg", cls: "amen--lg" },
+  { id: "bosque", n: "Casa de campo e área verde", src: "/assets/web/bosque.jpg", cls: "amen--w" },
+  { id: "academia", n: "Academia climatizada", src: "/assets/web/academia.jpg", cls: "" },
+  { id: "lounge", n: "Rooftop Wine com adega", src: "/assets/web/winebar.jpg", cls: "" },
+  { id: "gourmet", n: "Rooftop Gourmet", src: "/assets/web/gourmet.jpg", cls: "" },
   { id: "festas", n: "Salão de festas", src: "/assets/web/festas.jpg", cls: "" },
-  { id: "playground", n: "Playground", src: "/assets/web/playground.jpg", cls: "amen--w" },
-  { id: "kids", n: "Espaço kids", src: "/assets/web/kids.jpg", cls: "amen--w" },
-  { id: "rooftop", n: "Rooftop social", src: "/assets/web/rooftop.jpg", cls: "amen--w" },
+  { id: "spa", n: "Espaço Wellness com sauna", src: "/assets/web/spa.jpg", cls: "amen--w" },
+  { id: "kids", n: "Brinquedoteca", src: "/assets/web/kids.jpg", cls: "amen--w" },
+  { id: "rooftop", n: "Piscina no rooftop", src: "/assets/web/rooftop.jpg", cls: "amen--w" },
 ];
 
 export function AreasComuns() {
@@ -22,10 +22,10 @@ export function AreasComuns() {
       <div className="wrap">
         <Reveal className="sechead">
           <span className="eyebrow">Áreas comuns</span>
-          <h2 className="h-sec">Lazer completo para viver fora de casa</h2>
+          <h2 className="h-sec">Mais de 3 mil m² de lazer e bem-estar</h2>
           <p className="lead">
-            Da piscina ao rooftop social, ambientes de lazer e convivência
-            projetados para a família e para o dia a dia.
+            Do complexo aquático ao rooftop, o Etna by SPL reúne ambientes
+            wellness e de convivência pensados para a família e para o dia a dia.
           </p>
         </Reveal>
         <div className="bento">
@@ -46,7 +46,7 @@ export function AreasComuns() {
         </div>
         <SectionCta
           label="Quero ver tudo em primeira mão"
-          source="LP Represamento - Secção Áreas Comuns"
+          source="LP Etna - Secção Áreas Comuns"
         />
       </div>
     </section>
